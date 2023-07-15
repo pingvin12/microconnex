@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "./proto";
+package date_service;
+service DateService{
+  rpc GetEndDate(DateRequest) returns (DateResponse);
+  rpc GetEndDateBidirectional(stream DateRequest) returns (stream DateResponse);
+}
+
+message DateRequest {
+  string startDateInput = 1;
+  uint32 turnaroundTimeNumber = 2;
+}
+message DateResponse{
+  string endDateResponse = 1;
+}
