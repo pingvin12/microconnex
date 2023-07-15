@@ -7,7 +7,7 @@ import (
 	"github.com/golang/protobuf/ptypes/timestamp"
 )
 
-func getExpirationDate(date string, turnaroundTimeNumber int) timestamp.Timestamp {
+func GetExpirationDate(date string, turnaroundTimeNumber int) timestamp.Timestamp {
 
 	// Convert the timestamp to a time.Time
 	t, err := time.Parse("2006-01-02T15:04:05.000Z", date)

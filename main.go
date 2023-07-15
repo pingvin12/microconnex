@@ -3,9 +3,11 @@ package main
 import (
 	"context"
 	"log"
-	pb "microconnex/proto"
 	"net"
 
+	"github.com/pingvin12/microconnex/date"
+
+	pb "github.com/pingvin12/microconnex/proto"
 	"google.golang.org/grpc"
 )
 
@@ -21,18 +23,13 @@ func (s *dateServer) GetEndDate(ctx context.Context, request *pb.DateRequest) (*
 	// Retrieve the start date from the request
 	startDate := request.GetStartDateInput()
 	turnaroundTime := request.GetTurnaroundTimeNumber()
-
-	response := date.getExpirationDate(startDate, turnaroundTime)
+	date_response := date.GetExpirationDate(startDate, int(turnaroundTime))
 
 	response := &pb.DateResponse{
-		EndDateResponse: response.Format("2006-01-02T15:04:05.000Z"),
+		EndDateResponse: date_response.AsTime().Format("2006-01-02T15:04:05.000Z"),
 	}
 
 	return response, nil
-}
-
-func getExpirationDate() {
-	panic("unimplemented")
 }
 
 func main() {

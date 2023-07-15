@@ -6,7 +6,7 @@ import (
 	"github.com/golang/protobuf/ptypes/timestamp"
 )
 
-func Test_getExpirationDate(t *testing.T) {
+func Test_GetExpirationDate(t *testing.T) {
 	type args struct {
 		date                 string
 		turnaroundTimeNumber int
@@ -21,7 +21,7 @@ func Test_getExpirationDate(t *testing.T) {
 	for _, tt := range tests {
 		tt := tt // Create a new variable tt to avoid the closure issue
 		t.Run(tt.name, func(t *testing.T) {
-			got := getExpirationDate(tt.args.date, tt.args.turnaroundTimeNumber).Nanos
+			got := GetExpirationDate(tt.args.date, tt.args.turnaroundTimeNumber).Nanos
 			if got != tt.want.Nanos {
 				t.Errorf("getExpirationDate() = %v, want %v", got, tt.want)
 			}
